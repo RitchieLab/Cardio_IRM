@@ -1,0 +1,54 @@
+{
+  "name": "pgsc_calc",
+  "title": "pgsc_calc",
+  "summary": "Runs PGSC-CALC pipeline on UKBB DNAnexus, made by Katie Cardone",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "input",
+      "class": "array:file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "command",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "days": 7
+      }
+    },
+    "execDepends": [
+            {"name": "docker"}
+     ],
+    "interpreter": "bash",
+    "file": "src/pgsc_calc.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0"
+  },
+  "access": {
+    "network": [
+      "*"
+    ],
+    "project": "CONTRIBUTE"
+  },
+  "regionalOptions": {
+    "aws:eu-west-2": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x4"
+        }
+      }
+    }
+  }
+}
